@@ -2,7 +2,7 @@ package com.br.game.models.stagestate;
 
 public class ReadyToPlay extends State {
 
-	ReadyToPlay(Stage stage) {
+	public ReadyToPlay(Stage stage) {
 		super(stage);
 	}
 

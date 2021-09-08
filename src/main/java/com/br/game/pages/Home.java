@@ -16,19 +16,23 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import com.br.game.models.InstanceState;
+import com.br.game.models.gamemode.EasyMode;
+import com.br.game.models.gamemode.GameMode;
+import com.br.game.models.gamemode.HardMode;
+import com.br.game.models.gamemode.IntermediateMode;
 import com.br.game.models.stagestate.ReadyToPlay;
+import com.br.game.models.stagestate.Stage;
 import com.br.game.util.CircleButton;
 import com.google.common.io.Resources;
 
-public class Home extends JFrame implements ActionListener{
+public class Home extends JFrame{
 
     private JPanel contentPane;
     private JLabel labelIcon;
     private JLabel labelPontuacao;
-    private JButton buttonFacil;
     private JLabel title;
     private GridBagConstraints constraints;
+    private Stage stage = new Stage();
 
     public Home(){
         //Inicializando o constraint
@@ -51,6 +55,8 @@ public class Home extends JFrame implements ActionListener{
         generateButton(Color.MAGENTA, "Dificil");
         add(contentPane);
         setUndecorated(true);
+        ReadyToPlay readyToPlayState = new ReadyToPlay(this.stage);
+        this.stage.changeState(readyToPlayState);
     }
 
     public static void main(String[] args) {
@@ -82,11 +88,9 @@ public class Home extends JFrame implements ActionListener{
     }
 
     public void generateButton(Color color, String text){
-        CircleButton button = new CircleButton(text, color, Color.WHITE);
+        CircleButton button = new CircleButton(text, color, Color.WHITE, this.stage, getGameMode(text), this, new Game(this.stage));
         button.setBackground(color);
         button.setPreferredSize(new Dimension(296, 21));
-        
-        button.addActionListener(this);
 
         constraints.insets = new Insets(10, 0,0 ,0);
         constraints.gridwidth = 8;
@@ -106,12 +110,16 @@ public class Home extends JFrame implements ActionListener{
         contentPane.add(title, constraints);
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        Game novaJanela = new Game(e.getActionCommand());
-        novaJanela.setVisible(true);
-
-        this.dispose();
+    private GameMode getGameMode(String mode){
+        switch (mode){
+            case "Facil":
+                return new EasyMode();
+            case "Intermediario":
+                return new IntermediateMode();
+            case "Dificil":
+                return new HardMode();
+        }
+        return null;
     }
 
 }
