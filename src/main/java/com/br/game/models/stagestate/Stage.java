@@ -1,5 +1,6 @@
 package com.br.game.models.stagestate;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import com.br.game.models.Question;
@@ -9,7 +10,7 @@ import com.br.game.pages.Home;
 public class Stage {
 	State state;
 	private GameMode gameMode;
-	private Set<Question> questionsAnswered = null;
+	private Set<Question> questionsAnswered = new HashSet<>();
 	private Question currentQuestion = null;
 	private String currentAnswer = null;
 	private boolean playing;

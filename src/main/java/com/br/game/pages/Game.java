@@ -94,6 +94,8 @@ public class Game extends JFrame {
             this.setVisible(true);
         }
         this.contentPane.removeAll();
+        this.contentPane.revalidate();
+        this.contentPane.repaint();
         Question currentQuestion = this.stage.getCurrentQuestion();
         if(currentQuestion != null){
             generateIcon();
