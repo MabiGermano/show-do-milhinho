@@ -19,6 +19,9 @@ public class PlayingGame extends State {
 		if (this.stage.getCurrentQuestion().getRightAnswer().equals(currentAnswer)) {
 			QuestionRepository repository = new QuestionRepository();
 			Question nextQuestion = repository.findByRandomId();
+
+			this.stage.getQuestionsAnswered().add(this.stage.getCurrentQuestion());
+
 			this.stage.setCurrentQuestion(nextQuestion);
 			this.stage.setCurrentAnswer(null);
 		} else {
