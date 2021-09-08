@@ -16,8 +16,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import com.br.game.models.InstanceState;
 import com.br.game.models.stagestate.ReadyToPlay;
+import com.br.game.models.stagestate.Stage;
 import com.br.game.util.CircleButton;
 import com.google.common.io.Resources;
 
@@ -29,6 +29,7 @@ public class Home extends JFrame implements ActionListener{
     private JButton buttonFacil;
     private JLabel title;
     private GridBagConstraints constraints;
+    private Stage stage = new Stage();
 
     public Home(){
         //Inicializando o constraint
@@ -51,6 +52,8 @@ public class Home extends JFrame implements ActionListener{
         generateButton(Color.MAGENTA, "Dificil");
         add(contentPane);
         setUndecorated(true);
+        ReadyToPlay readyToPlayState = new ReadyToPlay(this.stage); 
+        this.stage.changeState(readyToPlayState);
     }
 
     public static void main(String[] args) {

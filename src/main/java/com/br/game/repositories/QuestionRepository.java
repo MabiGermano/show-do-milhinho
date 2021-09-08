@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import com.br.game.database.DatabaseConnection;
+import com.br.game.models.Question;
 
 public class QuestionRepository {
 
@@ -48,8 +49,7 @@ public class QuestionRepository {
 		return count;
 	}
 	
-	public int findById(int id) {
-		int count = 0;
+	public Question findById(int id) {
 		try {
 			DatabaseConnection database = DatabaseConnection.getInstance();
 
@@ -70,7 +70,11 @@ public class QuestionRepository {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return count;
+		return null;
+	}
+
+	public Question findByRandomId() {
+		return null;
 	}
 
 }

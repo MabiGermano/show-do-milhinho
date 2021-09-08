@@ -1,12 +1,12 @@
 package com.br.game.models.stagestate;
 
 public abstract class State {
-	private Stage stage;
+	protected Stage stage;
 	
 	State(Stage stage) {
         this.stage = stage;
     }
 
-    public abstract String onChoose();
+    public abstract void onChoose();
     public abstract String onTryHelp();
 }
