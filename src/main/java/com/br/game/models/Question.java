@@ -4,25 +4,25 @@ import java.util.Set;
 
 public class Question {
 
-	private Long id;
+	private int id;
 	private String title;
 	private Set<String> wrongAnswers;
 	private String rightAnswer;
 	
 	public Question() {}
 	
-	public Question(Long id, String title, Set<String> wrongAnswers, String rightAnswer) {
+	public Question(int id, String title, Set<String> wrongAnswers, String rightAnswer) {
 		this.id = id;
 		this.title = title;
 		this.rightAnswer = rightAnswer;
 		this.wrongAnswers = wrongAnswers;
 	}
 	
-	public Long getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
