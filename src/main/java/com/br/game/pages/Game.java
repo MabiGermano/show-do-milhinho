@@ -1,5 +1,6 @@
 package com.br.game.pages;
 
+import com.br.game.models.Question;
 import com.br.game.models.stagestate.Stage;
 import com.br.game.util.CircleButton;
 import com.google.common.io.Resources;
@@ -10,6 +11,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Iterator;
+import java.util.Random;
 import java.util.Set;
 
 public class Game extends JFrame {
@@ -32,7 +34,7 @@ public class Game extends JFrame {
         contentPane.setLayout(new GridBagLayout());
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         add(contentPane);
-        setUndecorated(true);
+//        setUndecorated(true);
     }
 
     public void generateTitle(String text){
@@ -61,6 +63,7 @@ public class Game extends JFrame {
 
     public void generateButton(Color color, String text){
         CircleButton button = new CircleButton(text, color, Color.WHITE, this.stage);
+        button.setPageNow(this);
         button.setBackground(color);
         button.setPreferredSize(new Dimension(296, 21));
         button.setBackground(color);
@@ -73,10 +76,16 @@ public class Game extends JFrame {
         contentPane.add(button, constraints);
     }
 
-    private void generateAnswers(Set<String> answers){
+    private void generateAnswers(Set<String> answers, String rightAnswer){
+        int i = 0;
+        int random = new Random().nextInt(answers.size());
         Iterator<String> answersAsIterator = answers.iterator();
         while (answersAsIterator.hasNext()){
+            if(i == random){
+                generateButton(Color.decode("#9F9F9F"), rightAnswer);
+            }
             generateButton(Color.decode("#9F9F9F"), answersAsIterator.next());
+            i++;
         }
     }
 
@@ -85,10 +94,11 @@ public class Game extends JFrame {
             this.setVisible(true);
         }
         this.contentPane.removeAll();
-        if(this.stage.getCurrentQuestion() != null){
+        Question currentQuestion = this.stage.getCurrentQuestion();
+        if(currentQuestion != null){
             generateIcon();
-            generateTitle(this.stage.getCurrentQuestion().getTitle());
-            generateAnswers(this.stage.getCurrentQuestion().getWrongAnswers());
+            generateTitle(currentQuestion.getTitle());
+            generateAnswers(currentQuestion.getWrongAnswers(), currentQuestion.getRightAnswer());
         }
     }
 }

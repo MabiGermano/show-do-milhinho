@@ -55,7 +55,7 @@ public class Home extends JFrame{
         generateButton(Color.BLUE, "Intermediario");
         generateButton(Color.MAGENTA, "Dificil");
         add(contentPane);
-        setUndecorated(true);
+//        setUndecorated(true);
         ReadyToPlay readyToPlayState = new ReadyToPlay(this.stage);
         this.stage.changeState(readyToPlayState);
     }

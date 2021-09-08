@@ -3,6 +3,7 @@ package com.br.game.util;
 import com.br.game.models.Question;
 import com.br.game.models.gamemode.GameMode;
 import com.br.game.models.stagestate.Stage;
+import com.br.game.pages.Finish;
 import com.br.game.pages.Game;
 
 import javax.swing.*;
@@ -65,8 +66,13 @@ public class CircleButton extends JButton implements ActionListener {
         else{
             this.stage.setCurrentAnswer(e.getActionCommand());
             this.stage.getState().onChoose();
+            Game game = (Game) this.pageNow;
             if (this.stage.isPlaying()){
-
+                game.refreshGame();
+            }else{
+                Finish finish = new Finish();
+                finish.setVisible(true);
+                game.dispose();
             }
         }
     }
