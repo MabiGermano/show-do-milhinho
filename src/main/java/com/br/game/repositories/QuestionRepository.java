@@ -87,7 +87,7 @@ public class QuestionRepository {
 				String wrongAnswersFromDb = dbResult.getString("wrong_answers");
 				
 				Set<String> wrongAnswers = new HashSet<>();
-				Collections.addAll(wrongAnswers, wrongAnswersFromDb.split(","));
+				Collections.addAll(wrongAnswers, wrongAnswersFromDb.split(";"));
 				question.setWrongAnswers(wrongAnswers);
 			}
 		} catch (SQLException e) {
