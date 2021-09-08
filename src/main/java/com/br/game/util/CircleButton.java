@@ -1,7 +1,9 @@
 package com.br.game.util;
 
+import com.br.game.models.Question;
 import com.br.game.models.gamemode.GameMode;
 import com.br.game.models.stagestate.Stage;
+import com.br.game.pages.Game;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,17 +16,14 @@ public class CircleButton extends JButton implements ActionListener {
     private Stage stage;
     private GameMode gameMode;
     private JFrame pageNow;
-    private JFrame pageNext;
+    private Game pageNext;
 
-    public CircleButton(String text, Color bg, Color fg, Stage stage, GameMode gameMode, JFrame pageNow, JFrame pageNext) {
+    public CircleButton(String text, Color bg, Color fg, Stage stage) {
         super(text);
 
         this.bg = bg;
         this.fg = fg;
         this.stage = stage;
-        this.gameMode = gameMode;
-        this.pageNow = pageNow;
-        this.pageNext = pageNext;
 
         Dimension size = getPreferredSize();
         size.width = size.height = Math.max(size.width, size.height);
@@ -56,11 +55,44 @@ public class CircleButton extends JButton implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        this.stage.setGameMode(this.gameMode);
-        this.stage.getState().onChoose();
+        if(pageNow != null && pageNext != null){
+            this.stage.setGameMode(this.gameMode);
+            this.stage.getState().onChoose();
 
-        this.pageNext.setVisible(true);
-        this.pageNow.dispose();
+            this.pageNext.refreshGame();
+            this.pageNow.dispose();
+        }
+        else{
+            this.stage.setCurrentAnswer(e.getActionCommand());
+            this.stage.getState().onChoose();
+            if (this.stage.isPlaying()){
+
+            }
+        }
+    }
+
+    public GameMode getGameMode() {
+        return gameMode;
+    }
+
+    public void setGameMode(GameMode gameMode) {
+        this.gameMode = gameMode;
+    }
+
+    public JFrame getPageNow() {
+        return pageNow;
+    }
+
+    public void setPageNow(JFrame pageNow) {
+        this.pageNow = pageNow;
+    }
+
+    public JFrame getPageNext() {
+        return pageNext;
+    }
+
+    public void setPageNext(Game pageNext) {
+        this.pageNext = pageNext;
     }
 }
          

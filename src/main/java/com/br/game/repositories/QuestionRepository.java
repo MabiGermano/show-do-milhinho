@@ -3,8 +3,11 @@ package com.br.game.repositories;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Arrays;
+import java.util.HashSet;
 
 import com.br.game.database.DatabaseConnection;
+import com.br.game.models.Question;
 
 public class QuestionRepository {
 
@@ -48,8 +51,7 @@ public class QuestionRepository {
 		return count;
 	}
 	
-	public int findById(int id) {
-		int count = 0;
+	public Question findById(int id) {
 		try {
 			DatabaseConnection database = DatabaseConnection.getInstance();
 
@@ -70,7 +72,11 @@ public class QuestionRepository {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return count;
+		return null;
+	}
+
+	public Question findByRandomId() {
+		return new Question(0, "O que é title?", new HashSet<String>(Arrays.asList("tutela", "titulo", "tapete")), "titulo");
 	}
 
 }

@@ -32,9 +32,10 @@ public class Home extends JFrame{
     private JLabel labelPontuacao;
     private JLabel title;
     private GridBagConstraints constraints;
-    private Stage stage = new Stage();
+    private Stage stage;
 
-    public Home(){
+    public Home(Stage stage){
+        this.stage = stage;
         //Inicializando o constraint
         constraints = new GridBagConstraints();
         constraints.fill = GridBagConstraints.HORIZONTAL;
@@ -57,12 +58,6 @@ public class Home extends JFrame{
         setUndecorated(true);
         ReadyToPlay readyToPlayState = new ReadyToPlay(this.stage);
         this.stage.changeState(readyToPlayState);
-    }
-
-    public static void main(String[] args) {
-        Home home = new Home();
-
-        home.setVisible(true);
     }
 
     private void generateIcon(){
@@ -88,7 +83,10 @@ public class Home extends JFrame{
     }
 
     public void generateButton(Color color, String text){
-        CircleButton button = new CircleButton(text, color, Color.WHITE, this.stage, getGameMode(text), this, new Game(this.stage));
+        CircleButton button = new CircleButton(text, color, Color.WHITE, this.stage);
+        button.setGameMode(getGameMode(text));
+        button.setPageNow(this);
+        button.setPageNext(new Game(this.stage));
         button.setBackground(color);
         button.setPreferredSize(new Dimension(296, 21));
 
@@ -102,7 +100,7 @@ public class Home extends JFrame{
     public void generateTitle(){
         title = new JLabel();
         title.setText("Modo do jogo");
-
+        title.setForeground(Color.decode("#E7A131"));
         constraints.insets = new Insets(50, 0,20 ,0);
         constraints.gridwidth = 3;
         constraints.gridx = 6;

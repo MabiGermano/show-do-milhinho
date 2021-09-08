@@ -1,16 +1,16 @@
 package com.br.game.models.gamemode;
 
 public abstract class GameMode {
-	protected Long timeToResponse;
+	protected int timeToResponse;
 	protected boolean hasTip;
 	
-	public Long getTimeToResponse() {
+	public int getTimeToResponse() {
 		return timeToResponse;
 	}
-	public void setTimeToResponse(Long timeToResponse) {
+	public void setTimeToResponse(int timeToResponse) {
 		this.timeToResponse = timeToResponse;
 	}
-	public boolean isHasTip() {
+	public boolean itHasTip() {
 		return hasTip;
 	}
 	public void setHasTip(boolean hasTip) {
