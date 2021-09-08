@@ -1,14 +1,25 @@
 package com.br.game.pages;
 
-import com.br.game.util.CircleButton;
-import com.br.game.util.RoundedBorder;
-import com.google.common.io.Resources;
-
-import javax.swing.*;
-import javax.swing.border.EmptyBorder;
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Image;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+
+import com.br.game.models.InstanceState;
+import com.br.game.models.stagestate.ReadyToPlay;
+import com.br.game.util.CircleButton;
+import com.google.common.io.Resources;
 
 public class Home extends JFrame implements ActionListener{
 
@@ -52,7 +63,7 @@ public class Home extends JFrame implements ActionListener{
         ImageIcon img = new ImageIcon(new ImageIcon(Resources.getResource("images/show-do-milhinho.png")).getImage().getScaledInstance(352,58,Image.SCALE_DEFAULT));
         labelIcon = new JLabel();
         labelIcon.setIcon(img);
-        labelIcon.setPreferredSize(new Dimension(352,58));
+        labelIcon.setPreferredSize(new Dimension(1200,720));
 
         constraints.gridwidth = 8;
         constraints.gridx = 2;
@@ -74,7 +85,7 @@ public class Home extends JFrame implements ActionListener{
         CircleButton button = new CircleButton(text, color, Color.WHITE);
         button.setBackground(color);
         button.setPreferredSize(new Dimension(296, 21));
-
+        
         button.addActionListener(this);
 
         constraints.insets = new Insets(10, 0,0 ,0);
