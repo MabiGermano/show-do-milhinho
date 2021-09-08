@@ -9,7 +9,7 @@ import com.br.game.pages.Home;
 public class Stage {
 	State state;
 	private GameMode gameMode;
-	private Set<Question> questionsAnswered;
+	private Set<Question> questionsAnswered = null;
 	private Question currentQuestion = null;
 	private String currentAnswer = null;
 	private boolean playing;

@@ -74,7 +74,8 @@ public class Home extends JFrame{
 
     public void generatePoints(){
         labelPontuacao = new JLabel();
-        labelPontuacao.setText("Melhor sequencia: ");
+        int points = this.stage.getQuestionsAnswered() != null ? this.stage.getQuestionsAnswered().size() : 0;
+        labelPontuacao.setText("Melhor sequencia: "+ points);
         labelPontuacao.setBounds(10,100,117,14);
         constraints.gridwidth = 1;
         constraints.gridx = 2;

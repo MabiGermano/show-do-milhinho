@@ -70,7 +70,7 @@ public class CircleButton extends JButton implements ActionListener {
             if (this.stage.isPlaying()){
                 game.refreshGame();
             }else{
-                Finish finish = new Finish();
+                Finish finish = new Finish(this.stage);
                 finish.setVisible(true);
                 game.dispose();
             }

@@ -1,5 +1,6 @@
 package com.br.game.pages;
 
+import com.br.game.models.stagestate.Stage;
 import com.br.game.util.CircleButton;
 import com.google.common.io.Resources;
 
@@ -14,8 +15,10 @@ public class Finish extends JFrame implements ActionListener {
     private JLabel title;
     private JLabel labelIcon;
     private GridBagConstraints constraints;
+    private Stage stage;
 
-    public Finish(){
+    public Finish(Stage stage){
+        this.stage = stage;
         //Inicializando o constraint
         constraints = new GridBagConstraints();
         constraints.fill = GridBagConstraints.HORIZONTAL;
@@ -28,8 +31,6 @@ public class Finish extends JFrame implements ActionListener {
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         //Adicionando o icone
         generateIcon();
-        generateTitle();
-        generateButton(Color.CYAN, "Sair");
         add(contentPane);
 //        setUndecorated(true);
     }
@@ -48,7 +49,8 @@ public class Finish extends JFrame implements ActionListener {
 
     public void generateTitle(){
         title = new JLabel();
-        title.setText("O jogo foi finalizado");
+        int points = this.stage.getQuestionsAnswered().size();
+        title.setText("Final de jogo, você acertou: " + points);
         title.setForeground(Color.decode("#E7A131"));
         constraints.insets = new Insets(50, 0,20 ,0);
         constraints.gridwidth = 3;
@@ -71,9 +73,17 @@ public class Finish extends JFrame implements ActionListener {
         contentPane.add(button, constraints);
     }
 
+    public void finalizaJogo(){
+        this.setVisible(true);
+
+        generateTitle();
+        generateButton(Color.CYAN, "Sair");
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
+        Home home = new Home(this.stage);
+        home.setVisible(true);
         this.dispose();
-//        System.exit(0);
     }
 }
