@@ -4,12 +4,13 @@ import java.util.Set;
 
 import com.br.game.models.Question;
 import com.br.game.models.gamemode.GameMode;
+import com.br.game.pages.Home;
 
 public class Stage {
 	State state;
 	private GameMode gameMode;
 	private Set<Question> questionsAnswered;
-	private Question currentQuestion;
+	private Question currentQuestion = null;
 	private String currentAnswer = null;
 	private boolean playing;
 	
@@ -72,5 +73,10 @@ public class Stage {
 			// -- Se a resposta for correta adicionar pergunta ao set de prerguntas respondidas
 			// buscar nova pergunta 
 			// -- Se a resposta não foi correta lançar exceção junto com a quantidade de perguntas acertadas
+	}
+
+	public void startGame(){
+		Home home = new Home(this);
+		home.setVisible(true);
 	}
 }
