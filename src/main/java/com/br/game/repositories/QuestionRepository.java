@@ -74,7 +74,7 @@ public class QuestionRepository {
 		Question question = new Question();
 		try {
 			DatabaseConnection database = DatabaseConnection.getInstance();
-			String query = "SELECT ROUND(RAND() * ( SELECT MAX(id) FROM  table_name)) AS id";
+			String query = "SELECT * FROM  question ORDER BY RAND() limit 1";
 			Statement statement = database.getConnection().createStatement();
 			ResultSet dbResult = statement.executeQuery(query);
 			while (dbResult.next()) {

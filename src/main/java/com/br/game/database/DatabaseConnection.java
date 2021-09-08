@@ -1,11 +1,11 @@
 package com.br.game.database;
 
-import com.br.game.properties.Manipulator;
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
+
+import com.br.game.properties.Manipulator;
 
 public class DatabaseConnection {
 
