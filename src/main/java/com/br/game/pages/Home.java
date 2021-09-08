@@ -25,7 +25,7 @@ public class Home extends JFrame implements ActionListener{
         constraints.fill = GridBagConstraints.HORIZONTAL;
         //Adicionando informações do JPanel
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(450,100,450,331);
+        setBounds(0,0,1024,720);
         contentPane = new JPanel();
         contentPane.setBackground(Color.WHITE);
         contentPane.setLayout(new GridBagLayout());
